@@ -7,7 +7,9 @@
   <title>Thirukkural Verses</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="icon" href="logo.png" type="image/png" />
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Tamil:wght@400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+Tamil:wght@400;700&family=Poppins:wght@400;600&display=swap"
+    rel="stylesheet">
   <style>
     body {
       font-family: 'Poppins', sans-serif;
@@ -41,8 +43,30 @@
       @apply bg-teal-500 hover:bg-teal-600 text-white font-medium py-2 px-4 rounded-lg transition-all duration-300;
     }
 
+    .kural-text {
+      color: white;
+    }
+
+    .kural-eng {
+      color: #c92156;
+    }
+
+    .side-head {
+      color: #fdb0b0;
+    }
+
+    .expand-btn {
+      color: #feffd1;
+      font-weight: 600;
+    }
+
     .bookmark-btn {
-      @apply text-yellow-400 hover:text-yellow-500 transition-colors duration-300;
+      @apply text-yellow-400 hover:text-yellow-500 transition-colors duration-300 float-right;
+    }
+
+    .selected-submenu {
+      background-color: rgba(255, 255, 255, 0.3);
+      /* Lighter shade for selected submenu */
     }
   </style>
 </head>
@@ -50,21 +74,55 @@
 <body class="min-h-screen flex">
   <!-- Sidebar Navigation -->
   <div class="sidebar w-64 h-screen p-6 text-white hidden md:block">
-    <h1 class="text-2xl font-bold mb-6">Thirukkural 🌿📜</h1>
+    <h1 class="text-2xl font-bold mb-6">திருக்குறள் 🌿📜</h1>
     <ul class="space-y-4">
-      <li><button id="virtueBtn" class="w-full text-left p-2 rounded-lg hover:bg-white hover:bg-opacity-20">Araththuppaal 📖</button></li>
-      <li><button id="wealthBtn" class="w-full text-left p-2 rounded-lg hover:bg-white hover:bg-opacity-20">Porutpaal 📖</button></li>
-      <li><button id="loveBtn" class="w-full text-left p-2 rounded-lg hover:bg-white hover:bg-opacity-20">Kaamaththuppaal 📖</button></li>
+      <li>
+        <button id="virtueBtn" class="w-full text-left p-2 rounded-lg hover:bg-white hover:bg-opacity-20">அறத்துப்பால்
+          📖</button>
+        <ul id="virtueSubmenu" class="pl-4 space-y-2 hidden">
+          <li><button class="w-full text-left p-2 rounded-lg hover:bg-white hover:bg-opacity-20"
+              data-sub="1">பாயிரவியல்</button></li>
+          <li><button class="w-full text-left p-2 rounded-lg hover:bg-white hover:bg-opacity-20"
+              data-sub="2">இல்லறவியல்</button></li>
+          <li><button class="w-full text-left p-2 rounded-lg hover:bg-white hover:bg-opacity-20"
+              data-sub="3">துறவறவியல்</button></li>
+        </ul>
+      </li>
+      <li>
+        <button id="wealthBtn" class="w-full text-left p-2 rounded-lg hover:bg-white hover:bg-opacity-20">பொருட்பால்
+          📖</button>
+        <ul id="wealthSubmenu" class="pl-4 space-y-2 hidden">
+          <li><button class="w-full text-left p-2 rounded-lg hover:bg-white hover:bg-opacity-20"
+              data-sub="39">அரசியல்</button></li>
+          <li><button class="w-full text-left p-2 rounded-lg hover:bg-white hover:bg-opacity-20"
+              data-sub="40">அமைச்சியல்</button></li>
+          <li><button class="w-full text-left p-2 rounded-lg hover:bg-white hover:bg-opacity-20"
+              data-sub="41">அங்கவியல்</button></li>
+          <li><button class="w-full text-left p-2 rounded-lg hover:bg-white hover:bg-opacity-20"
+              data-sub="42">ஒழிபியல்</button></li>
+        </ul>
+      </li>
+      <li>
+        <button id="loveBtn" class="w-full text-left p-2 rounded-lg hover:bg-white hover:bg-opacity-20">இன்பத்துப்பால்
+          📖</button>
+        <ul id="loveSubmenu" class="pl-4 space-y-2 hidden">
+          <li><button class="w-full text-left p-2 rounded-lg hover:bg-white hover:bg-opacity-20"
+              data-sub="108">களவியல்</button></li>
+          <li><button class="w-full text-left p-2 rounded-lg hover:bg-white hover:bg-opacity-20"
+              data-sub="109">கற்பியல்</button></li>
+        </ul>
+      </li>
     </ul>
   </div>
 
   <!-- Main Content -->
   <div class="flex-1 p-6">
     <div class="md:hidden mb-4">
-      <select id="paalSelect" class="w-full p-2 border-2 border-teal-500 rounded-lg focus:outline-none focus:border-teal-600">
-        <option value="virtue">Araththuppaal 📖</option>
-        <option value="wealth">Porutpaal 📖</option>
-        <option value="love">Kaamaththuppaal 📖</option>
+      <select id="paalSelect"
+        class="w-full p-2 border-2 border-teal-500 rounded-lg focus:outline-none focus:border-teal-600">
+        <option value="virtue">அறத்துப்பால் 📖</option>
+        <option value="wealth">பொருட்பால் 📖</option>
+        <option value="love">இன்பத்துப்பால் 📖</option>
       </select>
     </div>
 
@@ -77,79 +135,186 @@
     const loveBtn = document.getElementById('loveBtn');
     const paalSelect = document.getElementById('paalSelect');
     const chaptersContainer = document.getElementById('chaptersContainer');
+    const virtueSubmenu = document.getElementById('virtueSubmenu');
+    const wealthSubmenu = document.getElementById('wealthSubmenu');
+    const loveSubmenu = document.getElementById('loveSubmenu');
 
-    // Sample Kurals data (expand with full 1330 verses)
+    // Toggle submenus and highlight selected
+    virtueBtn.addEventListener('click', () => {
+      virtueSubmenu.classList.toggle('hidden');
+      wealthSubmenu.classList.add('hidden');
+      loveSubmenu.classList.add('hidden');
+      highlightSelectedSubmenu('virtue', 1);
+      renderChapters('virtue', 1);
+    });
+    wealthBtn.addEventListener('click', () => {
+      wealthSubmenu.classList.toggle('hidden');
+      virtueSubmenu.classList.add('hidden');
+      loveSubmenu.classList.add('hidden');
+      highlightSelectedSubmenu('wealth', 39);
+      renderChapters('wealth', 39);
+    });
+    loveBtn.addEventListener('click', () => {
+      loveSubmenu.classList.toggle('hidden');
+      virtueSubmenu.classList.add('hidden');
+      wealthSubmenu.classList.add('hidden');
+      highlightSelectedSubmenu('love', 108);
+      renderChapters('love', 108);
+    });
+
+    // Submenu click handlers
+    document.querySelectorAll('#virtueSubmenu button, #wealthSubmenu button, #loveSubmenu button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const paal = btn.closest('ul').id.replace('Submenu', '');
+        const chapterId = parseInt(btn.getAttribute('data-sub'));
+        highlightSelectedSubmenu(paal, chapterId);
+        renderChapters(paal, chapterId);
+      });
+    });
+
+    paalSelect.addEventListener('change', (e) => {
+      const chapterId = e.target.value === 'virtue' ? 1 : e.target.value === 'wealth' ? 39 : 108;
+      highlightSelectedSubmenu(e.target.value, chapterId);
+      renderChapters(e.target.value, chapterId);
+    });
+
+    // Highlight selected submenu
+    function highlightSelectedSubmenu(paal, chapterId) {
+      document.querySelectorAll('.sidebar button').forEach(btn => btn.classList.remove('selected-submenu'));
+      const submenu = document.querySelector(`#${paal}Submenu button[data-sub="${chapterId}"]`);
+      if (submenu) submenu.classList.add('selected-submenu');
+    }
+
+    // Updated Kurals data with correct structure
     const kurals = {
       virtue: {
         chapters: [
-          { id: 1, name: "In Praise of God", kurals: [
-            { tamil: "அறம் புரிந்தால் தீரும் அவா", eng: "Virtue practiced dispels desire." },
-            { tamil: "கடவுள் வணங்கி வாழ்வது அறம்", eng: "Worshipping God is the essence of virtue." },
-            // Add 8 more kurals...
-          ]},
-          { id: 2, name: "The Excellence of Rain", kurals: [
-            { tamil: "வானம் தானம் தரும் வாழ்வு", eng: "Rain brings the gift of life." },
-            // Add 9 more kurals...
-          ]}
-          // Add 37 more chapters...
+          {
+            id: 1, name: "பாயிரவியல்", sections: [
+              {
+                name: "கடவுள் வாழ்த்து", kurals: [
+                  { tamil: "அகர முதல எழுத்தெல்லாம் ஆதி", eng: "A is the first of letters, God is the first of beings." },
+                  { tamil: "கடவுள் வணங்கி வாழ்வது அறம்", eng: "Worshipping God is the essence of virtue." },
+                  { tamil: "அறம் புரிந்தால் தீரும் அவா", eng: "Virtue practiced dispels desire." },
+                  { tamil: "கற்றது கைமண் அளவு", eng: "Learning is a handful of earth." },
+                  { tamil: "கல்லாதவன் கேடு அறிவு", eng: "The unlearned face ruin through ignorance." },
+                  { tamil: "அறிவுடையவன் ஆட்சி செலுத்து", eng: "The wise govern with knowledge." },
+                  { tamil: "நல்லவன் நெஞ்சம் திறந்து", eng: "The good-hearted open their minds." },
+                  { tamil: "தீயவன் தன்னை அறி", eng: "The wicked should know themselves." },
+                  { tamil: "உலகு உயர்வு அறத்தால்", eng: "The world rises through virtue." },
+                  { tamil: "கடவுள் கருணை தன்மை", eng: "God's compassion is supreme." }
+                ]
+              },
+              {
+                name: "வான் சிறப்பு", kurals: [
+                  { tamil: "வானம் தானம் தரும் வாழ்வு", eng: "Rain brings the gift of life." },
+                  { tamil: "மழை இல்லையேல் மரம் காயும்", eng: "Without rain, trees wither." },
+                  // Add 8 more kurals...
+                ]
+              },
+              {
+                name: "நீத்தார் பெருமை", kurals: [
+                  { tamil: "நீத்தாரை நாடு உயரும்", eng: "The land prospers with the virtuous." },
+                  // Add 9 more kurals...
+                ]
+              },
+              {
+                name: "அறன்வலியுறுத்தல்", kurals: [
+                  { tamil: "அறம் செய்ய வேண்டும் எப்போதும்", eng: "Virtue must be practiced always." },
+                  // Add 9 more kurals...
+                ]
+              }
+            ]
+          }
         ]
       },
       wealth: {
         chapters: [
-          { id: 38, name: "The Glory of Wealth", kurals: [
-            { tamil: "பொருள் பெறுதல் அறிவின் பயன்", eng: "Wealth is the fruit of wisdom." },
-            // Add 9 more kurals...
-          ]}
-          // Add 69 more chapters...
+          {
+            id: 39, name: "அரசியல்", kurals: [
+              { tamil: "பொருள் பெறுதல் அறிவின் பயன்", eng: "Wealth is the fruit of wisdom." }
+            ]
+          },
+          {
+            id: 40, name: "அமைச்சியல்", kurals: [
+              { tamil: "அமைச்சு அறிவால் செல்வம்", eng: "Ministers prosper with wisdom." }
+            ]
+          },
+          {
+            id: 41, name: "அங்கவியல்", kurals: [
+              { tamil: "அங்கம் பலவும் அறிவு தேவை", eng: "All parts need wisdom." }
+            ]
+          },
+          {
+            id: 42, name: "ஒழிபியல்", kurals: [
+              { tamil: "ஒழுக்கம் உயர்வு தரும்", eng: "Discipline brings elevation." }
+            ]
+          }
         ]
       },
       love: {
         chapters: [
-          { id: 108, name: "The Beauty of Love", kurals: [
-            { tamil: "காதல் கருதி வாழ்வது இன்பம்", eng: "Living with love is joy." },
-            // Add 9 more kurals...
-          ]}
-          // Add 24 more chapters...
+          {
+            id: 108, name: "களவியல்", kurals: [
+              { tamil: "காதல் கருதி வாழ்வது இன்பம்", eng: "Living with love is joy." }
+            ]
+          },
+          {
+            id: 109, name: "கற்பியல்", kurals: [
+              { tamil: "கற்பு காவல் செய்ய வேண்டும்", eng: "Chastity must be guarded." }
+            ]
+          }
         ]
       }
     };
 
-    // Render chapters for selected Paal
-    function renderChapters(paal) {
+    // Render chapters for selected Paal and chapter with separate expansions
+    function renderChapters(paal, chapterId) {
       chaptersContainer.innerHTML = '';
-      const chapters = kurals[paal].chapters;
+      const chapters = kurals[paal].chapters.filter(ch => ch.id === chapterId);
       chapters.forEach(chapter => {
         const chapterDiv = document.createElement('div');
-        chapterDiv.className = 'card text-white';
-        chapterDiv.innerHTML = `
-          <button class="accordion-button w-full text-left" data-chapter="${chapter.id}">
-            ${chapter.name} (Chapter ${chapter.id})
-          </button>
-          <div id="chapter-${chapter.id}" class="hidden mt-2 space-y-2"></div>
-        `;
+        chapterDiv.className = 'text-2xl font-bold mb-4 side-head';
+        chapterDiv.textContent = chapter.name; // பாயிரவியல் as main heading outside box
         chaptersContainer.appendChild(chapterDiv);
 
-        const kuralDiv = document.getElementById(`chapter-${chapter.id}`);
-        chapter.kurals.forEach((kural, index) => {
-          const kuralItem = document.createElement('div');
-          kuralItem.className = 'p-3 bg-white bg-opacity-20 rounded-lg';
-          kuralItem.innerHTML = `
-            <p class="text-lg font-medium">${kural.tamil} (Kural ${index + 1})</p>
-            <p class="text-sm italic text-gray-200">${kural.eng}</p>
-            <button class="bookmark-btn mt-1" data-kural="${kural.tamil}">❤️ Bookmark</button>
+        chapter.sections.forEach(section => {
+          const sectionCard = document.createElement('div');
+          sectionCard.className = 'card mb-4';
+          sectionCard.innerHTML = `
+            <button class="accordion-button w-full text-left expand-btn" data-section="${section.name}">
+              ${section.name}
+            </button>
+            <div id="section-${section.name}" class="hidden mt-2 space-y-2"></div>
           `;
-          kuralDiv.appendChild(kuralItem);
+          chaptersContainer.appendChild(sectionCard);
+
+          const kuralDiv = document.getElementById(`section-${section.name}`);
+          section.kurals.forEach((kural, index) => {
+            const kuralItem = document.createElement('div');
+            kuralItem.className = 'p-3 bg-white bg-opacity-20 rounded-lg flex justify-between items-center';
+            kuralItem.innerHTML = `
+              <div>
+                <p class="text-lg font-medium kural-text">${index + 1}. ${kural.tamil}</p>
+                <p class="text-sm italic kural-eng">${kural.eng}</p>
+              </div>
+              <button class="bookmark-btn" data-kural="${kural.tamil}">❤️</button>
+            `;
+            kuralDiv.appendChild(kuralItem);
+          });
         });
       });
 
       // Add accordion functionality
       document.querySelectorAll('.accordion-button').forEach(button => {
         button.addEventListener('click', () => {
-          const chapterId = button.getAttribute('data-chapter');
-          const content = document.getElementById(`chapter-${chapterId}`);
+          const sectionName = button.getAttribute('data-section');
+          const content = document.getElementById(`section-${sectionName}`);
           content.classList.toggle('hidden');
-          content.classList.add('fade-enter-active');
-          setTimeout(() => content.classList.remove('fade-enter-active'), 500);
+          if (!content.classList.contains('hidden')) {
+            content.classList.add('fade-enter-active');
+            setTimeout(() => content.classList.remove('fade-enter-active'), 500);
+          }
         });
       });
 
@@ -174,14 +339,19 @@
       if (item) item.remove();
     }
 
-    // Event Listeners
-    virtueBtn.addEventListener('click', () => renderChapters('virtue'));
-    wealthBtn.addEventListener('click', () => renderChapters('wealth'));
-    loveBtn.addEventListener('click', () => renderChapters('love'));
-    paalSelect.addEventListener('change', (e) => renderChapters(e.target.value));
-
-    // Initial load
-    renderChapters('virtue');
+    // Initial load with பாயிரவியல் and கடவுள் வாழ்த்து open by default
+    document.addEventListener('DOMContentLoaded', () => {
+      renderChapters('virtue', 1);
+      highlightSelectedSubmenu('virtue', 1);
+      setTimeout(() => {
+        const firstSection = document.getElementById('section-கடவுள் வாழ்த்து');
+        if (firstSection) {
+          firstSection.classList.remove('hidden');
+          firstSection.classList.add('fade-enter-active');
+          setTimeout(() => firstSection.classList.remove('fade-enter-active'), 500);
+        }
+      }, 100);
+    });
   </script>
 </body>
 
