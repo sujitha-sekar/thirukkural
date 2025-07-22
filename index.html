@@ -45,10 +45,28 @@
 
     .kural-text {
       color: white;
+      line-height: 1.4;
+    }
+
+    .kural-line1 {
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+
+    .kural-line2 {
+      font-size: 1.1rem;
+      font-weight: 600;
     }
 
     .kural-eng {
-      color: #c92156;
+      color: rgb(31 41 55 / var(--tw-text-opacity, 1));
+      font-size: 0.9rem;
+      font-style: italic;
+    }
+
+    .sec-card {
+      background: linear-gradient(135deg, #fdd692, #fcb69f);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
     }
 
     .side-head {
@@ -193,35 +211,34 @@
             id: 1, name: "பாயிரவியல்", sections: [
               {
                 name: "கடவுள் வாழ்த்து", kurals: [
-                  { tamil: "அகர முதல எழுத்தெல்லாம் ஆதி", eng: "A is the first of letters, God is the first of beings." },
-                  { tamil: "கடவுள் வணங்கி வாழ்வது அறம்", eng: "Worshipping God is the essence of virtue." },
-                  { tamil: "அறம் புரிந்தால் தீரும் அவா", eng: "Virtue practiced dispels desire." },
-                  { tamil: "கற்றது கைமண் அளவு", eng: "Learning is a handful of earth." },
-                  { tamil: "கல்லாதவன் கேடு அறிவு", eng: "The unlearned face ruin through ignorance." },
-                  { tamil: "அறிவுடையவன் ஆட்சி செலுத்து", eng: "The wise govern with knowledge." },
-                  { tamil: "நல்லவன் நெஞ்சம் திறந்து", eng: "The good-hearted open their minds." },
-                  { tamil: "தீயவன் தன்னை அறி", eng: "The wicked should know themselves." },
-                  { tamil: "உலகு உயர்வு அறத்தால்", eng: "The world rises through virtue." },
-                  { tamil: "கடவுள் கருணை தன்மை", eng: "God's compassion is supreme." }
+                  { tamil: "அகர முதல எழுத்தெல்லாம் ஆதி\nபகவன் முதற்றே உலகு", eng: "எழுத்துக்கள்‌ எல்லாம்‌ அகரத்தை அடிப்படையாகக்‌ கொண்டிருக்கின்றன. அதுபோல்‌ உலகம்‌ கடவுளை அடிப்படையாகக்‌ கொண்டிருக்கின்றது." },
+                  { tamil: "கற்றதனால் ஆய பயனென்கொல் வாலறிவன்\nநற்றாள் தொழாஅர் எனின்", eng: "தூய அறிவு வடிவாக விளங்கும்‌ இறைவனுடைய நல்ல திருவடிகளைத்‌ தொழாமல்‌ இருப்பாரானால்‌, அவர்‌ கற்ற கல்வியினால்‌ ஆகிய பயன்‌ என்ன?" },
+                  { tamil: "மலர்மிசை ஏகினான் மாணடி சேர்ந்தார்\nநிலமிசை நீடுவாழ் வார்", eng: "அன்பரின்‌ அகமாகிய மலரில்‌ வீற்றிருக்கும்‌ கடவுளின்‌ சிறந்த திருவடிகளை இடைவிடாமல்‌ நினைக்கின்றவர்‌ இன்ப உலகில்‌ நிலைத்து வாழ்வார்‌." },
+                  { tamil: "வேண்டுதல் வேண்டாமை இலானடி சேர்ந்தார்க்கு\nயாண்டும் இடும்பை இல", eng: "விருப்பு வெறுப்பு இல்லாத கடவுளின்‌ திருவடிகளைப்‌ பொருந்தி நினைக்கின்றவர்க்கு எப்போதும்‌ எவ்விடத்திலும்‌ துன்பம்‌ இல்லை." },
+                  { tamil: "இருள்சேர் இருவினையும் சேரா இறைவன்\nபொருள்சேர் புகழ்புரிந்தார் மாட்டு", eng: "கடவுளின்‌ உண்மைப்‌ புகழை விரும்பி அன்பு செலுத்துகின்றவரிடம்‌, அறியாமையால்‌ விளையும்‌ இருவகை வினையும்‌ சேர்வதில்லை." },
+                  { tamil: "பொறிவாயில் ஐந்தவித்தான் பொய்தீர் ஒழுக்க\nநெறிநின்றார் நீடுவாழ் வார்", eng: "ஐம்பொறி வாயிலாகப்‌ பிறக்கும்‌ வேட்கைகளை அவித்த இறைவனுடைய பொய்யற்ற ஒழுக்க நெறியில்‌ நின்றவர்‌, நிலை பெற்ற நல்வாழ்க்கை வாழ்வர்‌." },
+                  { tamil: "தனக்குவமை இல்லாதான் தாள்சேர்ந்தார்க் கல்லால்\nமனக்கவலை மாற்றல் அரிது", eng: "தனக்கு ஒப்புமை இல்லாத தலைவனுடைய திருவடிகளைப்‌ பொருந்தி நினைக்கின்றவர்க்கு அல்லாமல்‌, மற்றவர்க்கு மனக்கவலையை மாற்ற முடியாது." },
+                  { tamil: "அறவாழி அந்தணன் தாள்சேர்ந்தார்க் கல்லால்\nபிறவாழி நீந்தல் அரிது", eng: "அறக்கடலாக விளங்கும்‌ கடவுளின்‌ திருவடிகளைப்‌ பொருந்தி நினைக்கின்றவர்க்கு அல்லாமல்‌, மற்றவர்‌ பொருளும்‌ இன்பமுமாகிய மற்றக்‌ கடல்களைக்‌ கடக்க முடியாது." },
+                  { tamil: "கோளில் பொறியின் குணமிலவே எண்குணத்தான்\nதாளை வணங்காத் தலை", eng: "கேட்காத செவி பார்க்காத கண்‌ முதலியனபோல்‌ எண்‌ குணங்களை உடைய கடவுளின்‌ திருவடிகளை வணங்காதவரின்‌ தலைகள்‌ பயனற்றவைகளாம்‌." },
+                  { tamil: "பிறவிப் பெருங்கடல் நீந்துவர் நீந்தார்\nஇறைவன் அடிசேரா தார்", eng: "இறைவனுடைய திருவடிகளைப்‌ பொருந்தி நினைக்கின்றவர்‌ பிறவியாகிய பெரிய கடலைக்‌ கடக்க முடியும்‌: மற்றவர்‌ கடக்க முடியாது." },
                 ]
               },
               {
                 name: "வான் சிறப்பு", kurals: [
-                  { tamil: "வானம் தானம் தரும் வாழ்வு", eng: "Rain brings the gift of life." },
-                  { tamil: "மழை இல்லையேல் மரம் காயும்", eng: "Without rain, trees wither." },
-                  // Add 8 more kurals...
+                  { tamil: "வானம் தானம் தரும் வாழ்வு\nமழை இல்லையேல் மரம் காயும்", eng: "Rain brings the gift of life." }
+                  // Add more kurals as needed
                 ]
               },
               {
                 name: "நீத்தார் பெருமை", kurals: [
-                  { tamil: "நீத்தாரை நாடு உயரும்", eng: "The land prospers with the virtuous." },
-                  // Add 9 more kurals...
+                  { tamil: "நீத்தாரை நாடு உயரும்\nஅறம் செய்ய வேண்டும் எப்போதும்", eng: "The land prospers with the virtuous." }
+                  // Add more kurals as needed
                 ]
               },
               {
                 name: "அறன்வலியுறுத்தல்", kurals: [
-                  { tamil: "அறம் செய்ய வேண்டும் எப்போதும்", eng: "Virtue must be practiced always." },
-                  // Add 9 more kurals...
+                  { tamil: "அறம் செய்ய வேண்டும் எப்போதும்\nநல்லவன் நெஞ்சம் திறந்து", eng: "Virtue must be practiced always." }
+                  // Add more kurals as needed
                 ]
               }
             ]
@@ -232,22 +249,22 @@
         chapters: [
           {
             id: 39, name: "அரசியல்", kurals: [
-              { tamil: "பொருள் பெறுதல் அறிவின் பயன்", eng: "Wealth is the fruit of wisdom." }
+              { tamil: "பொருள் பெறுதல் அறிவின் பயன்\nஅறிவுடையவன் ஆட்சி செலுத்து", eng: "Wealth is the fruit of wisdom." }
             ]
           },
           {
             id: 40, name: "அமைச்சியல்", kurals: [
-              { tamil: "அமைச்சு அறிவால் செல்வம்", eng: "Ministers prosper with wisdom." }
+              { tamil: "அமைச்சு அறிவால் செல்வம்\nநல்லவன் நெஞ்சம் திறந்து", eng: "Ministers prosper with wisdom." }
             ]
           },
           {
             id: 41, name: "அங்கவியல்", kurals: [
-              { tamil: "அங்கம் பலவும் அறிவு தேவை", eng: "All parts need wisdom." }
+              { tamil: "அங்கம் பலவும் அறிவு தேவை\nஅறம் புரிந்தால் தீரும் அவா", eng: "All parts need wisdom." }
             ]
           },
           {
             id: 42, name: "ஒழிபியல்", kurals: [
-              { tamil: "ஒழுக்கம் உயர்வு தரும்", eng: "Discipline brings elevation." }
+              { tamil: "ஒழுக்கம் உயர்வு தரும்\nகடவுள் வணங்கி வாழ்வது அறம்", eng: "Discipline brings elevation." }
             ]
           }
         ]
@@ -256,12 +273,12 @@
         chapters: [
           {
             id: 108, name: "களவியல்", kurals: [
-              { tamil: "காதல் கருதி வாழ்வது இன்பம்", eng: "Living with love is joy." }
+              { tamil: "காதல் கருதி வாழ்வது இன்பம்\nநல்லவன் நெஞ்சம் திறந்து", eng: "Living with love is joy." }
             ]
           },
           {
             id: 109, name: "கற்பியல்", kurals: [
-              { tamil: "கற்பு காவல் செய்ய வேண்டும்", eng: "Chastity must be guarded." }
+              { tamil: "கற்பு காவல் செய்ய வேண்டும்\nஅறம் செய்ய வேண்டும் எப்போதும்", eng: "Chastity must be guarded." }
             ]
           }
         ]
@@ -291,11 +308,13 @@
 
           const kuralDiv = document.getElementById(`section-${section.name}`);
           section.kurals.forEach((kural, index) => {
+            const [line1, line2] = kural.tamil.split('\n');
             const kuralItem = document.createElement('div');
-            kuralItem.className = 'p-3 bg-white bg-opacity-20 rounded-lg flex justify-between items-center';
+            kuralItem.className = 'p-3 sec-card rounded-lg flex justify-between items-center';
             kuralItem.innerHTML = `
               <div>
-                <p class="text-lg font-medium kural-text">${index + 1}. ${kural.tamil}</p>
+                <p class="text-lg font-medium kural-text kural-line1">${index + 1}. ${line1}</p>
+                <p class="text-lg font-medium kural-text kural-line2">${line2}</p>
                 <p class="text-sm italic kural-eng">${kural.eng}</p>
               </div>
               <button class="bookmark-btn" data-kural="${kural.tamil}">❤️</button>
@@ -305,11 +324,24 @@
         });
       });
 
-      // Add accordion functionality
+      // Add accordion functionality with single open panel
       document.querySelectorAll('.accordion-button').forEach(button => {
         button.addEventListener('click', () => {
           const sectionName = button.getAttribute('data-section');
           const content = document.getElementById(`section-${sectionName}`);
+          
+          // Close all other panels
+          document.querySelectorAll('.accordion-button').forEach(otherButton => {
+            if (otherButton !== button) {
+              const otherContent = document.getElementById(`section-${otherButton.getAttribute('data-section')}`);
+              if (!otherContent.classList.contains('hidden')) {
+                otherContent.classList.add('hidden');
+                otherContent.classList.remove('fade-enter-active');
+              }
+            }
+          });
+
+          // Toggle the clicked panel
           content.classList.toggle('hidden');
           if (!content.classList.contains('hidden')) {
             content.classList.add('fade-enter-active');
